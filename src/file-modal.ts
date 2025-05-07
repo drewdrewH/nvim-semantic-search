@@ -20,9 +20,14 @@ export class FilePreviewModal {
       const uiHeight = await nvim.call('winheight', [0]) as number;
       
       // Create listing content
+      const cwd = (await nvim.call('getcwd')) as string;
       const lines = this.files.map((file, index) => {
+        let displayPath = file.filepath
+        if(file.filepath.startsWith(cwd)){
+          displayPath = file.filepath.substring(cwd.length)
+        }
         const similarity = file.similarity ? ` [${file.similarity.toFixed(3)}]` : '';
-        return `${String(index + 1).padStart(3)}. ${file.filepath}${similarity}`;
+        return `${String(index + 1).padStart(3)}. ${displayPath}${similarity}`;
       });
       
       const header = [
@@ -46,8 +51,8 @@ export class FilePreviewModal {
       if(typeof listBuffer === 'number' || typeof previewBuffer === 'number') return;
       
       // Calculate layout
-      const totalWidth = Math.min(Math.floor(uiWidth * 0.9), 160);
-      const totalHeight = Math.min(Math.floor(uiHeight * 0.8), 40);
+      const totalWidth = Math.floor(uiWidth * 0.8);
+      const totalHeight = Math.floor(uiHeight * 0.7);
       const listWidth = Math.floor(totalWidth * 0.4);
       const previewWidth = totalWidth - listWidth;
       
