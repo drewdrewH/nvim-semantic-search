@@ -1,0 +1,43 @@
+{
+  "name": "nvim-semantic-search",
+  "version": "0.1.0",
+  "description": "Semantic search plugin for Neovim",
+  "main": "rplugin/node/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "lint": "eslint 'src/**/*.ts'",
+    "test": "jest",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "neovim",
+    "nvim",
+    "plugin",
+    "semantic-search",
+    "search"
+  ],
+  "engines": {
+    "neovim": "^0.5.0"
+  },
+  "author": "drewdrewh",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.0.0",
+    "@types/pg": "^8.11.14",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "neovim": "^4.10.1",
+    "openai": "^4.96.2",
+    "pg": "^8.15.6",
+    "pgvector": "^0.2.0"
+  }
+}
